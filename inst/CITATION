@@ -1,0 +1,9 @@
+citHeader("To cite CoNiche in publications:")
+
+bibentry(
+  bibtype = "Manual",
+  title   = "CoNiche: Community Niche Position and Width Estimation Tools",
+  author  = c(person("Shuotao", "Zhou")),
+  year    = "2025",
+  note    = "R package version 0.1.0"
+)

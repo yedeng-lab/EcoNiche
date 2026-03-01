@@ -1,0 +1,26 @@
+Package: EcoNiche
+Type: Package
+Title: Community Niche Position and Width Estimation Tools
+Version: 0.9.0
+Authors@R: c(
+    person("Shuotao", "Zhou", , "zhoushuotao@stu.hunau.edu.cn", role = c("aut", "cre")),
+    person("Kai", "Feng", , "kaifeng@rcees.ac.cn", role = "aut"),
+    person("Ye", "Deng", , "yedeng@rcees.ac.cn", role = "aut")
+  )
+Description: Tools to estimate niche position and niche width using CCA/partial-CCA,
+    GAM along single environmental gradients, and Levins niche breadth metrics.
+    CoNiche supports species-level niche characterization and site-level summary statistics.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    ggplot2,
+    mgcv,
+    vegan,
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    viridisLite
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+RoxygenNote: 7.3.3

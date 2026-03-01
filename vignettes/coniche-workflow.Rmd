@@ -1,0 +1,15 @@
+---
+title: "CoNiche workflow"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{CoNiche workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+This vignette will document the CoNiche workflows (CCA/GAM/Levins).
+Use toy data examples to keep build times short for CRAN.
