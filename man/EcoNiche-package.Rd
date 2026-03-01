@@ -10,6 +10,14 @@ CoNiche provides tools to estimate niche position and niche width using
 (i) CCA/partial-CCA workflows, (ii) GAM fits along single gradients, and
 (iii) Levins niche breadth metrics, with functions for species- and site-level summaries.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/zhoushuotao/EcoNiche}
+  \item Report bugs at \url{https://github.com/zhoushuotao/EcoNiche/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Shuotao Zhou \email{zhoushuotao@stu.hunau.edu.cn}
 
