@@ -577,7 +577,7 @@ devtools::build_vignettes()
 
 If you use EcoNiche in a publication, please cite the software (and include the version):
 
-> Zhou S, Feng K, Deng Y. EcoNiche: Community Niche Position and Width Estimation Tools (R package), v0.9.0. GitHub: [https://github.com/zhoushuotao/EcoNiche](https://github.com/zhoushuotao/EcoNiche)
+> Zhou S, Feng K, Deng Y. EcoNiche: Community Niche Position and Width Estimation Tools (R package), v0.9.0. GitHub: [https://github.com/yedeng-lab/EcoNiche](https://github.com/yedeng-lab/EcoNiche)
 
 (Replace with a formal paper citation if/when a methods manuscript is published.)
 
