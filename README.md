@@ -12,17 +12,24 @@ Package version: **1.0.3**
 
 ## Availability
 
-EcoNiche can be obtained from GitHub:
+EcoNiche can be installed from CRAN:
+
+```r
+install.packages("EcoNiche")
+```
+
+The stable release is distributed through **CRAN**. The GitHub repository provides the development version, source code and issue tracking.
+
+The development version can be installed from GitHub:
 
 ```r
 # install.packages("remotes")
 remotes::install_github("zhoushuotao/EcoNiche")
 ```
 
-EcoNiche has also been uploaded to **CARD** as an archived software record for version 1.0.3. If a stable archived copy is required for citation or review, please cite the CARD EcoNiche v1.0.3 record together with the GitHub repository.
-
 Source code and issue tracking are maintained on GitHub:
 
+- CRAN: <https://CRAN.R-project.org/package=EcoNiche>
 - GitHub: <https://github.com/zhoushuotao/EcoNiche>
 - Issues: <https://github.com/zhoushuotao/EcoNiche/issues>
 
@@ -401,7 +408,7 @@ Levins and Shannon:
 
 If you use EcoNiche in a publication, please cite the software and include the version:
 
-> Zhou S, Feng K, Deng Y. EcoNiche: Community Niche Position and Width Estimation Tools. R package version 1.0.3. GitHub: <https://github.com/zhoushuotao/EcoNiche>. CARD archived software record: EcoNiche v1.0.3.
+> Zhou S, Feng K, Deng Y. EcoNiche: Community Niche Position and Width Estimation Tools. R package version 1.0.3. CRAN: <https://CRAN.R-project.org/package=EcoNiche>. GitHub: <https://github.com/zhoushuotao/EcoNiche>.
 
 Please replace or supplement this with the formal paper citation after the EcoNiche manuscript is published.
 
@@ -421,4 +428,5 @@ Issues and pull requests are welcome. When reporting a bug, please include:
 ## License
 
 MIT License. See `LICENSE`.
+
 
