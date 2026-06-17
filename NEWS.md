@@ -1,3 +1,10 @@
+# EcoNiche 1.0.3
+
+* Added built-in plant community example datasets: `plant_otu`, `plant_env`, and
+  `plant_group`.
+* Added dataset documentation for reproducible examples in CCA/pCCA, GAM, and
+  Levins workflows.
+
 # EcoNiche 1.0.0
 
 * First stable CRAN release.

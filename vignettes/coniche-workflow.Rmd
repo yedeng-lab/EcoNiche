@@ -2,37 +2,122 @@
 title: "EcoNiche workflow"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{CoNiche workflow}
+  %\VignetteIndexEntry{EcoNiche workflow}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
 library(EcoNiche)
-set.seed(1)
+```
 
-otu <- matrix(rpois(20*25, 5), nrow = 20)
-rownames(otu) <- paste0("OTU", 1:20)
-colnames(otu) <- paste0("S", 1:25)
+This vignette demonstrates the EcoNiche workflow using the built-in plant
+community example data.
 
-env <- data.frame(
-  Temp = rnorm(25, 15, 3),
-  pH   = rnorm(25, 6.5, 0.4),
-  SOC  = rlnorm(25, 2, 0.3)
-)
-rownames(env) <- colnames(otu)
+## Input data
 
-res <- cca_workflow(
-  mode = "gradient",
-  otu = otu, env = env,
-  sel = c("Temp", "pH"),
-  covariates = "SOC",
+EcoNiche expects a taxon-by-sample abundance matrix and a sample-by-variable
+environmental table. The sample IDs in `colnames(plant_otu)` match
+`rownames(plant_env)` and `names(plant_group)`.
+
+```{r input-data}
+data("plant_otu")
+data("plant_env")
+data("plant_group")
+
+dim(plant_otu)
+dim(plant_env)
+table(plant_group)[1:5]
+```
+
+For fast examples, we retain species observed in at least 15 samples.
+
+```{r filter-taxa}
+otu_ex <- plant_otu[rowSums(plant_otu > 0) >= 15, ]
+dim(otu_ex)
+```
+
+## CCA / partial-CCA workflow
+
+The CCA workflow uses multiple environmental variables to define the focal
+composite gradient and annual mean temperature as the covariate and plotting
+gradient.
+
+```{r cca-workflow}
+cca_res <- cca_workflow_gradient(
+  otu = otu_ex,
+  env = plant_env,
+  sel = c("AMP", "Moisture", "AP", "pH"),
+  covariates = "AMT",
+  var = "AMT",
+  method = "loess",
+  galaxy_colnum = FALSE,
   make_plot = FALSE,
   top_node = 20
 )
 
-str(res$step3, max.level = 1)
+names(cca_res)
+head(cca_res$step3$species)
 ```
 
-This vignette will document the CoNiche workflows (CCA/GAM/Levins).
-Use toy data examples to keep build times short for CRAN.
+## Group-level workflow
+
+```{r group-workflow}
+group_res <- cca_workflow_group(
+  otu = otu_ex,
+  env = plant_env,
+  group = plant_group,
+  sel = c("AMP", "Moisture", "AP", "pH"),
+  covariates = "AMT",
+  var = "AMT",
+  choice = "all",
+  method = "loess",
+  plot_type = "sample",
+  galaxy_colnum = FALSE,
+  make_plot = FALSE
+)
+
+names(group_res)
+head(group_res$step6$data)
+```
+
+## GAM response analysis
+
+GAMs can be used to estimate taxon optima and response breadth along a single
+gradient.
+
+```{r gam-workflow}
+otu_gam <- plant_otu[rowSums(plant_otu > 0) >= 20, ]
+
+gam_res <- gam_fit_model(
+  otu = otu_gam,
+  env = plant_env,
+  env_var = "AMT",
+  data_type = "count",
+  count_family = "nb",
+  use_offset = TRUE,
+  min_prev = 0.10,
+  min_total = 20,
+  k_spline = 5,
+  n_grid = 100,
+  verbose = FALSE
+)
+
+head(gam_res)
+```
+
+## Levins breadth along a binned gradient
+
+```{r levins-workflow}
+levins_res <- levins_calc_binned(
+  otu = otu_ex,
+  env = plant_env,
+  axis_var = "AMT",
+  nbin = 8,
+  bin_method = "equal_freq",
+  min_occ = 3,
+  min_abund = 5
+)
+
+head(levins_res)
+```
